@@ -160,7 +160,7 @@ SELECT
 
 
 -- Other Analysis:
--- Q1. What are the best brand estimated sales wise from each category;
+-- Q7. What are the best brand estimated sales wise from each category;
 
 WITH product_cte as (SELECT brand, category, sales_proxy,
 ROW_NUMBER() OVER (PARTITION BY category ORDER BY sales_proxy DESC)as rn FROM amazon)
@@ -168,7 +168,7 @@ ROW_NUMBER() OVER (PARTITION BY category ORDER BY sales_proxy DESC)as rn FROM am
 SELECT * FROM product_cte WHERE rn = 1
 ORDER BY sales_proxy;
 
--- Q2. How many products have the highest rating in each category?
+-- Q8. How many products have the highest rating in each category?
 
 WITH max_ratings AS (
     SELECT
@@ -188,7 +188,7 @@ GROUP BY a.category ORDER BY top_rated_product_count desc;
 
 
 
--- Q3. Which price bands generate the most revenue and engagement and where should assortment focus be?
+-- Q9. Which price bands generate the most revenue and engagement and where should assortment focus be?
 
 SELECT 
     price_band,
@@ -199,7 +199,3 @@ SELECT
 FROM amazon
 GROUP BY price_band
 ORDER BY total_revenue_in_bn DESC;
-
-
-
-
