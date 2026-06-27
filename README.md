@@ -1,5 +1,3 @@
-# Amazon_Dataset_EDA_and_Dashboard
-
 # Amazon Marketplace — Category & Sales Analysis
 
 A end-to-end data analysis project conducted on a limited dataset examining product, brand, and category-wise performance across Amazon India's marketplace. Built as a portfolio project to demonstrate skills in data cleaning, SQL analysis, and business intelligence reporting.
