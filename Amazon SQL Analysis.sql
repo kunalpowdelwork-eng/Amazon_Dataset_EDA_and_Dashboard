@@ -43,7 +43,7 @@ WHERE cumulative_pct <= 80
         SELECT MIN(cumulative_pct) FROM pareto WHERE cumulative_pct > 80)
 ORDER BY total_sales DESC;
 
--- Q2. Which brands account for 80% of the assumed sales within each category?
+-- Q2. How many brands account for this total 80% of the assumed sales of marketplace and Top 5 within the same?
 
 WITH brand_sales AS (
     SELECT
