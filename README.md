@@ -1,4 +1,4 @@
-# Amazon Marketplace: A Category & Sales Analysis
+# Amazon Marketplace: Categorical & Sales Analysis
 
 A end-to-end data analysis project conducted on a limited dataset examining product, brand, and category-wise performance across Amazon India's marketplace. Built as a portfolio project to demonstrate skills in data cleaning, SQL analysis, and business intelligence reporting.
 
@@ -20,21 +20,19 @@ The original dataset consisted of 1,455 rows and 16 columns which after cleaning
 ## Workflow Followed:
 
 **Stage 1: Cleaning of Data and CSV Loading [Python (Notebook)]**
-Raw CSV was cleaned, transformed, and enriched with three engineered columns — `sales_proxy`, `rating_type`, and `price_band` — before being exported to a cleaned CSV used by both SQL and Power BI.
-
-## Data Cleaning Decisions
-
-| Action | Reason |
+Raw CSV was cleaned, transformed, and enriched with three feature engineered columns; `sales_proxy`, `rating_type`, and `price_band` before being exported to a cleaned CSV used by both SQL and Power BI. Datatypes of multiple columns were changed from String to Float for doing aggregation functions such as Max and Min. Furthermore, duplication and null-values were replaced before exporting into CSV.
+ <br> 
+| Action Taken | Reason |
 |---|---|
 | Dropped 114 duplicate rows | Based on `product_id + product_name` as a unique composite key |
 | Split category into 3 levels | Original pipe-delimited string contained category, subcategory, domain and additional information|
 | Brand extracted from product name | No dedicated brand column existed; first word extracted and title-cased |
 | Rating nulls filled with subcategory mean | Preserves relative rating context rather than using a global mean |
-| Rating count nulls filled with 1 | Conservative assumption — at least one reviewer per listed product |
+| Rating count nulls filled with 1 | Conservative assumption at least one reviewer per listed product |
 | Domains with no value filled as 'Not Available' | 35 products had no third-level category hierarchy |
+ <br> 
 
-
-**Step 2 — SQL (PostgreSQL)**
+**Step 2: SQL (PostgreSQL)**
 Nine analytical queries were written against the cleaned dataset covering Pareto analysis on revenue and customer engagement, price band performance, brand concentration, and top product identification per category.
 
 -- Q1. Which categories account for 80% of the marketplace's assumed sales? <br>
@@ -74,16 +72,16 @@ Redmi | Electronics
 
 -- Q8. How many products have the highest rating in each category? <br>
 
-Category | Total Count
-"OfficeProducts" |	7
-"Home&Kitchen" |	3
-"Computers&Accessories" | 3
-"Electronics" | 2
-"Health&PersonalCare" | 1
-"MusicalInstruments" | 1
-"HomeImprovement" | 1
-"Toys&Games" |	1
-"Car&Motorbike"	| 1
+**Category | Total Count**
+OfficeProducts |	7
+Home&Kitchen |	3
+Computers&Accessories | 3
+Electronics| 2
+Health&PersonalCare | 1
+MusicalInstruments | 1
+HomeImprovement | 1
+Toys&Games |	1
+Car&Motorbike	| 1
 
 -- Q9. Which price bands generate the most revenue and engagement and where should be assortment focused? <br>
 
@@ -91,8 +89,8 @@ Premium Category showed most revenue followed siglightly by Budget where as Expe
 This thus calls for more product placement from Premium Segment.
 
 
-**Step 3 — Power BI**
-An interactive dashboard was built using the cleaned CSV, with slicers for Category, Subcategory, Domain, Rating Type, and Price Band.
+**Step 3: Dashboard Creation (Power BI)**
+An interactive dashboard was built by importing cleaned data from Postgre Database, with slicers for Category, Subcategory, Domain, Rating Type, and Price Band.
 
 ![image](https://github.com/kunalpowdelwork-eng/Amazon_Dataset_EDA_and_Dashboard/blob/main/Amazon%20Dashboard%20PNG.png)
 
@@ -108,10 +106,10 @@ Similarly, a correlation of **-0.16** between discount and rating suggests disco
 
 - **Premium price band punches above its weight** despite having far fewer products than the Under ₹1,000 segment, the Premium (₹10K–₹30K) band segment generates the highest total estimated sales, indicating that high-value products drive disproportionate revenue.
 
-- **Brand concentration is high in Electronics** — Redmi (19bn), Samsung (7bn), and Mi (7bn) together account for the majority of (estimated) Electronics revenue, indicating a concentrated, brand-driven market structure. <br> <br>
+- **Brand concentration is high in Electronics**: Redmi (19bn), Samsung (7bn), and Mi (7bn) together account for the majority of (estimated) Electronics revenue, indicating a concentrated, brand-driven market structure. <br> <br>
 **Insight**: Future products of these brands should be monitored in terms of stock availability with vendors to facitilate proper user purchase experience, which also avoid existing base customer to switch to another platform.
 
-- **Customer ratings skew positive** — 824 products (61%) are rated Great (4–4.5★) and 489 (36%) are rated Good (3–4★). Only 10 products across the entire dataset fall below a 3★ rating. <br> <br>
+- **Customer ratings skew positive**: 824 products (61%) are rated Great (4–4.5★) and 489 (36%) are rated Good (3–4★). Only 10 products across the entire dataset fall below a 3★ rating. <br> <br>
 **Insight**: Apart from the Product's own attributes, customer satisfication in an E-Commerce is affected by logistical and transporation as product damages may happen before product even lands to the customer. High Positive rating indicates proper functioning of these operations which is crucial in products that are fragile (such as Electronics) or require special care.
 
 
