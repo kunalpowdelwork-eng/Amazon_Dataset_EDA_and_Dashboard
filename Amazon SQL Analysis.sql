@@ -160,7 +160,7 @@ SELECT
 
 
 -- Other Analysis:
--- Q1. What are the best product estimated sales wise from each category;
+-- Q1. What are the best brand estimated sales wise from each category;
 
 WITH product_cte as (SELECT brand, category, sales_proxy,
 ROW_NUMBER() OVER (PARTITION BY category ORDER BY sales_proxy DESC)as rn FROM amazon)
@@ -168,7 +168,7 @@ ROW_NUMBER() OVER (PARTITION BY category ORDER BY sales_proxy DESC)as rn FROM am
 SELECT * FROM product_cte WHERE rn = 1
 ORDER BY sales_proxy;
 
--- Q2. What are the best product rating wise from each category;
+-- Q2. How many products have the highest rating in each category?
 
 WITH max_ratings AS (
     SELECT
@@ -184,12 +184,11 @@ FROM amazon a
 JOIN max_ratings m
     ON a.category = m.category
    AND a.rating = m.max_rating
-GROUP BY a.category;
+GROUP BY a.category ORDER BY top_rated_product_count desc;
 
 
 
 -- Q3. Which price bands generate the most revenue and engagement and where should assortment focus be?
-
 
 SELECT 
     price_band,
@@ -200,24 +199,6 @@ SELECT
 FROM amazon
 GROUP BY price_band
 ORDER BY total_revenue_in_bn DESC;
-
-
--- Q4. Which categories are dominated by a few brands vs. fragmented across many?"
-SELECT category,
-    COUNT(DISTINCT brand) AS total_brands,
-    COUNT(DISTINCT product_id) AS total_products,
-    ROUND(COUNT(DISTINCT product_id)::NUMERIC / 
-          COUNT(DISTINCT brand), 1) AS products_per_brand,
-    CASE 
-        WHEN COUNT(DISTINCT brand) <= 10 THEN 'Concentrated'
-        WHEN COUNT(DISTINCT brand) <= 50 THEN 'Moderate'
-        ELSE 'Fragmented'
-    END AS market_structure
-FROM amazon
-GROUP BY category
-ORDER BY total_brands DESC;
-
-
 
 
 
