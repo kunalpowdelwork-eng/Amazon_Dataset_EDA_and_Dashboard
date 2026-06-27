@@ -160,22 +160,25 @@ An interactive dashboard was built by importing cleaned data from Postgre Databa
 | **Avg. Product Sales** | Shows Average Sales Proxy per product |
 ---
 
+### Parameter Creation
+A dynamic field parameter was created using seven key metrics and implemented as a tile-based slicer, allowing customization of visualisations by selecting the desired metric. The available metrics include Total Products, Total Sales, Average Product Sales, Average Product Discount, Total Ratings, Average Rating, and Average Rating Count.
+
 ### 🔹 Charts
 
 **📊 Discount & Revenue (Avg) vs Category**:
 Overlays average discount percentage and average sales proxy across all product categories. Built to test whether categories offering deeper discounts generate proportionally higher sales.
 
-**📊 Total Sales / Products by Subcategory**:
-Ranks all subcategories by the selected KPI toggle metric. In Sales view, Mobiles & Accessories (31bn) and Home Theatre (17bn) lead revealing where within broad categories the real revenue concentration sits beyond top-level category labels.
+**📊 Parameter / Product Subcategory**:
+Ranks all subcategories against Parameter chosen. For instance: In Sales view, Mobiles & Accessories (31bn) and Home Theatre (17bn) lead revealing where within broad categories the real revenue concentration sits beyond top-level category labels.
 
-**📊 Total Sales / Products by Brand**:
+**📊 Parameter / Brand**:
 Ranks brands by the selected metric. In Sales view, Redmi (19bn), Samsung (7bn), and Mi (7bn) dominate, confirming the brand concentration finding from SQL Pareto analysis.
 
-**📊 Total Sales / Products by Category**:
-Shows performance across all 8 top-level categories. Electronics leads at 57bn, with Home&Kitchen and Computers&Accessories at 6bn each directly visualising the Pareto finding that one category drives a disproportionate share of total estimated sales.
+**📊 Parameter / Product Category**:
+Shows performance across all 8 top-level categories against Parameter chosen. for example: In Total Sales, Electronics leads at 57bn, with Home&Kitchen and Computers&Accessories at 6bn each directly visualising the Pareto finding that one category drives a disproportionate share of total estimated sales.
 
-**📊 Total Sales / Products by Price Band**:
-Compares four price segments: Under ₹1,000, Budget, Premium, and Expensive.
+**📊 Parameter / Price Band**:
+Compares four price segments: Under ₹1,000, Budget, Premium, and Expensive against Parameter chosen.
 
 ---
 
