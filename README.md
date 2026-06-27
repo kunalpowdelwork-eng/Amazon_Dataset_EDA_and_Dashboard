@@ -50,6 +50,7 @@ Raw CSV was cleaned, transformed, and enriched with three feature engineered col
  <br> 
 | Action Taken | Reason |
 |---|---|
+|Dropped Review related and Link related Columns| As Sentiment Analysis is not primary objective of this project|
 | Dropped 114 duplicate rows | Based on `product_id + product_name` as a unique composite key |
 | Split category into 3 levels | Original pipe-delimited string contained category, subcategory, domain and additional information|
 | Brand extracted from product name | No dedicated brand column existed; first word extracted and title-cased |
